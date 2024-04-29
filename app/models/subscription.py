@@ -1,4 +1,5 @@
 from . import db
+# from .user import UserModel
 
 
 class SubscriptionModel(db.Model):
@@ -9,7 +10,7 @@ class SubscriptionModel(db.Model):
     industry = db.Column(db.String(100), nullable=False)
     source = db.Column(db.String(100), nullable=False)
     subcategory = db.Column(db.String(100), nullable=False)
-    user = db.relationship('User', backref=db.backref('subscriptions', lazy=True))
+    user = db.relationship('UserModel', backref=db.backref('subscriptions', lazy=True))
 
     def __init__(self, user_id, industry, source, subcategory):
         self.user_id = user_id
