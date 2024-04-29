@@ -1,14 +1,15 @@
 
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
 from app.config import DevelopmentConfig, TestConfig
+
+from flask_restful import Api
+from app.resources import initialize_routes
 
 from app.models.user import UserModel
 from app.models.subscription import SubscriptionModel
+from app.data_loader import load_data
 
 import os
-
-from app.models import db
 
 
 def create_app():
@@ -18,11 +19,13 @@ def create_app():
     env = os.environ.get('FLASK_ENV', 'development')
     if env == 'development':
         app.config.from_object(DevelopmentConfig)
+        load_data(app)
+        
     elif env == 'test':
         app.config.from_object(TestConfig)
 
-    db.init_app(app)
-    with app.app_context():
-        db.create_all()
+    api = Api(app)
+
+    initialize_routes(api)
 
     return app
