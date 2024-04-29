@@ -2,8 +2,10 @@ class Config:
     DEBUG = False
 
 class DevelopmentConfig(Config):
-    DEBUG = True
-    SQLALCHEMY_DATABASE_URI = 'jdbc:h2:mem:testdb'
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///app.db'
+    # SQLALCHEMY_TRACK_MODIFICATIONS = True
+    SQLALCHEMY_ECHO = True
+    SQLALCHEMY_RECORD_QUERIES = True
 
 class TestConfig(Config):
     TESTING = True

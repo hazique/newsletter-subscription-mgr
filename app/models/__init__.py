@@ -4,3 +4,8 @@
 
 # db = SQLAlchemy(app)
 # mongo = PyMongo(app)
+
+from flask_sqlalchemy import SQLAlchemy
+
+db = SQLAlchemy()
+

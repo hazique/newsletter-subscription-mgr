@@ -1,16 +1,15 @@
-# models.py
-from flask_sqlalchemy import SQLAlchemy
+from . import db
 
-db = SQLAlchemy()
 
 class SubscriptionModel(db.Model):
     __tablename__ = 'subscriptions'
 
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, unique=True, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     industry = db.Column(db.String(100), nullable=False)
     source = db.Column(db.String(100), nullable=False)
     subcategory = db.Column(db.String(100), nullable=False)
+    user = db.relationship('User', backref=db.backref('subscriptions', lazy=True))
 
     def __init__(self, user_id, industry, source, subcategory):
         self.user_id = user_id
