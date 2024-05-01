@@ -47,7 +47,7 @@ Run development server to serve the Flask application:
 (venv) $ python -m flask run
 ```
 
-The repository contains a Postman collection for testing requests. Please install Postman to run those requests. Also the tests initialize an app instance. Running the tests successfully means the app behaves the way it is supposed to. Instructions or running the tests are mentioned below.
+The repository contains a Postman collection (newsletter-subscription-mgr.postman_collection.json) for testing requests. Please install [Postman](https://www.postman.com/downloads/) to run those requests. Also, the tests initialize an app instance. Running the tests successfully means the app behaves the way it is supposed to. Instructions on running the tests are mentioned below.
 
 ## Key Python Modules Used
 
@@ -57,7 +57,6 @@ The repository contains a Postman collection for testing requests. Please instal
 * **Flask-SQLAlchemy** - ORM (Object Relational Mapper) for Flask
 * **coverage** - analyzes code coverage
 
-This application is written using Python 3.8 & pip 24.0.
 
 ## Testing
 
@@ -74,4 +73,4 @@ To check the code coverage of the tests:
 ```
 
 
-## Design Decision & Tradeoffs
+## Design Decisions & Tradeoffs
