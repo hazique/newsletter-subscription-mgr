@@ -1,4 +1,5 @@
-from . import db
+from app import db
+from sqlalchemy import event
 
 class UserModel(db.Model):
     __tablename__ = 'users'
@@ -23,3 +24,9 @@ class UserModel(db.Model):
 
     def __repr__(self):
         return f"<User(username='{self.username}', email='{self.email}')>"
+    
+@event.listens_for(UserModel.__table__, 'after_create')
+def create_users(*args, **kwargs):
+    db.session.add(UserModel(username='tim', email='tim@domain.com', password='9Jkp7d4F2GhR3sLt'))
+    db.session.add(UserModel(username='joe', email='joe@domain.com', password='E4hWt9sP2mN6qA7j'))
+    db.session.commit()

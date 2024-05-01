@@ -9,5 +9,5 @@ class DevelopmentConfig(Config):
 
 class TestConfig(Config):
     TESTING = True
-    SQLALCHEMY_DATABASE_URI = 'mysql://username:password@localhost/test_db'
+    # SQLALCHEMY_DATABASE_URI = 'mysql://username:password@localhost/test_db'
 

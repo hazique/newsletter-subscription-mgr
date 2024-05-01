@@ -1,6 +1,5 @@
-from . import db
-# from .user import UserModel
-
+from sqlalchemy import event
+from app import db
 
 class SubscriptionModel(db.Model):
     __tablename__ = 'subscriptions'
@@ -43,3 +42,9 @@ class SubscriptionModel(db.Model):
     @classmethod
     def find_by_user_id(cls, user_id):
         return cls.query.filter_by(user_id=user_id).first()
+
+@event.listens_for(SubscriptionModel.__table__, 'after_create')
+def create_subscriptions(*args, **kwargs):
+    db.session.add(SubscriptionModel(user_id=1, industry='Technology', source='TechCrunch', subcategory='Latest'))
+    db.session.add(SubscriptionModel(user_id=2, industry='Technology', source='TechCrunch', subcategory='Latest'))  
+    db.session.commit()
