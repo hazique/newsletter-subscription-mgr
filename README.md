@@ -73,4 +73,14 @@ To check the code coverage of the tests:
 ```
 
 
-## Design Decisions & Tradeoffs
+## Design Decisions
+1. Python-Flask for ease of configuration and availability of a wide range of extensions for development.
+2. Using Flask-Restful to create routes as resources and bundle endpoints as if it were a namespace into a single Python class.
+3. Using SQLlite as DB for local development to allow any developer to start contributing without need for a complicated DB setup.
+4. Using separate config class to start the application is Dev, Test and Prod environments.
+5. Ease of testing.
+
+## Tradeoffs
+1. Flask handle requests synchronously. In order to handle requests asynchronously and scale, we would need to run the application in an ASGI server.
+2. To make the application feature rich, we'd have to use third party modules. This can lead to security vulnerabilities.
+3. This demo project does not contain user authentication as it wasn't in the scope of the assignment.

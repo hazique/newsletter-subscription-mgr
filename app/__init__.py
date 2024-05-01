@@ -11,8 +11,21 @@ import os
 
 from flask_sqlalchemy import SQLAlchemy
 
+
+# -------------
+# Configuration
+# -------------
+
+# Create the instances of the Flask extensions (flask-sqlalchemy) in
+# the global scope, but without any arguments passed in.  These instances are not attached
+# to the application at this point.
 db = SQLAlchemy()
 
+
+
+# ----------------------------
+# Application Factory Function
+# ----------------------------
 def create_app():
     app = Flask(__name__)
     
@@ -43,11 +56,17 @@ def create_app():
 
     return app
 
+# ----------------
+# Helper Functions
+# ----------------
 def register_routes(api):
+    # Since the application instance is now created, register each Resource
+    # with the Flask application instance (app)
     from app.resources.subscription import SubscriptionResource
     api.add_resource(SubscriptionResource, '/subscription')
 
 def is_db_present(app):
+    # Check if the database file exists
     db_path = os.path.join(app.instance_path, 'app.db')
     return os.path.isfile(db_path)
 

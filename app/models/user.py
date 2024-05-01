@@ -2,6 +2,18 @@ from app import db
 from sqlalchemy import event
 
 class UserModel(db.Model):
+
+    """
+    Class that represents a user of the application
+
+    The following attributes of a user are stored in this table:
+        * email - email address of the user
+        * password - plaintext password
+        * username - username of the user registered
+
+    REMEMBER: This is for demo purpose only. Never store the plaintext password in a database!
+    """
+
     __tablename__ = 'users'
 
     id = db.Column(db.Integer, primary_key=True)

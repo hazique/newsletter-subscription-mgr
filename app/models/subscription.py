@@ -3,6 +3,18 @@ from app import db
 from .user import UserModel
 
 class SubscriptionModel(db.Model):
+    """
+    Class that represents a user newsletter subscription
+
+    The following attributes of a user are stored in this table:
+        * user_id - id of user holding the subscription. Foreign key to users table.
+        * industry - newsletter industry
+        * source - newsletter source
+        * subcategory - newsletter subcategory
+
+    REMEMBER: Never store the plaintext password in a database!
+    """
+
     __tablename__ = 'subscriptions'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -10,6 +22,8 @@ class SubscriptionModel(db.Model):
     industry = db.Column(db.String(100), nullable=False)
     source = db.Column(db.String(100), nullable=False)
     subcategory = db.Column(db.String(100), nullable=False)
+
+     # Define the relationship to the `UserModel` class
     user = db.relationship('UserModel', backref=db.backref('subscriptions', lazy=True))
 
     def __init__(self, user_id, industry, source, subcategory):
