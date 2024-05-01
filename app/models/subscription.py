@@ -1,5 +1,6 @@
 from sqlalchemy import event
 from app import db
+from .user import UserModel
 
 class SubscriptionModel(db.Model):
     __tablename__ = 'subscriptions'

@@ -53,9 +53,13 @@ def is_db_present(app):
 
 def configure_logging(app):
     # Logging Configuration
+    if not is_db_present(app):
+        os.makedirs(app.instance_path, exist_ok=True)
+    
     file_handler = RotatingFileHandler('instance/flask-user-management.log',
-                                        maxBytes=16384,
-                                        backupCount=20)
+                                    maxBytes=16384,
+                                    backupCount=20,
+                                    mode='a')
     file_formatter = logging.Formatter('%(asctime)s %(levelname)s %(threadName)s-%(thread)d: %(message)s [in %(filename)s:%(lineno)d]')
     file_handler.setFormatter(file_formatter)
     file_handler.setLevel(logging.INFO)
