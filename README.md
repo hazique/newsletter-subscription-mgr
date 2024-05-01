@@ -1,6 +1,6 @@
 ## Overview
 
-This Flask application contains the newsletter subscription management functionality. This application has been built using **Python 3.8 & pip 24**.
+This Flask application contains the newsletter subscription management functionality. This application has been built using **Python 3.8 & pip 24.0**.
 
 ## Installation Instructions
 
